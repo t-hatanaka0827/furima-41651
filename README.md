@@ -25,18 +25,18 @@
 |--------------------|---------------------|--------------------------------|
 | name               | string              | null: false                    |
 | description        | text                | null: false                    |
-| category           | string              | null: false                    |
-| condition          | string              | null: false                    |
-| shipping_cost      | string              | null: false                    |
-| shipping_area      | string              | null: false                    |
-| shipping_days      | string              | null: false                    |
-| price              | string              | null: false                    |
+| category_id        | integer             | null: false                    |
+| condition_id       | integer             | null: false                    |
+| shipping_cost_id   | integer             | null: false                    |
+| shipping_area_id   | integer             | null: false                    |
+| shipping_day_id    | integer             | null: false                    |
+| price              | integer             | null: false                    |
 | user               | references          | null: false, foreign_key: true |出品者
 
 ### Association
 
 * belong_to :user
-* has_one   :purchases
+* has_one   :purchase
 
 ## purchases table
 
@@ -50,14 +50,14 @@
 
 * belong_to :user
 * belong_to :item
-* has_one :shipping_addresses
+* has_one :shipping_address
 
 ## shipping_addresses table
 
 | Column             | Type                | Options                        |
 |--------------------|---------------------|--------------------------------|
 | postal_code        | string              | null: false                    |
-| prefecture         | string              | null: false                    |
+| shipping_area_id   | integer             | null: false, foreign_key: true |
 | city               | string              | null: false                    |
 | address            | string              | null: false                    |
 | building           | string              |                                |
