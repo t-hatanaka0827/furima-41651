@@ -151,7 +151,9 @@
             <%= item.name %>
           </h3>
           <div class='item-price'>
-            <span><%= item.shipping_cost_id == 2 ? "送料込み（出品者負担）" : "着払い（購入者負担）" %></span>
+           <span><%= item.price %><br>
+            <%= item.shipping_cost_id == 2 ? "送料込み（出品者負担）" : "着払い（購入者負担）" %>
+           </span>
             <div class='star-btn'>
               <%= image_tag "star.png", class:"star-icon" %>
               <span class='star-count'>0</span>
