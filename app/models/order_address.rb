@@ -9,8 +9,12 @@ class OrderAddress < ApplicationRecord
   validates :city, presence: true
   validates :address, presence: true
   validates :phone_number, presence: true, format: { with: /\A\d{10,11}\z/}
+  
   validates :token, presence: true
 
   def save
+    purchase = Purchase.create(user_id: user_id, item_id: item_id)
+
+    shipping_address = ShippingAddress.create(purchase_id: purchase.id, postal_code: postal_code, shipping_area_id: shipping_area_id, city: city, address: address, building: building, phone_number: phone_number)
   end
 end
