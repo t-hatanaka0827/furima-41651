@@ -70,12 +70,12 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_23_014424) do
 
   create_table "shipping_addresses", charset: "utf8mb3", force: :cascade do |t|
     t.bigint "purchase_id", null: false
-    t.string "postal_code"
-    t.integer "shipping_area_id"
-    t.string "city"
-    t.string "address"
+    t.string "postal_code", null: false
+    t.integer "shipping_area_id", null: false
+    t.string "city", null: false
+    t.string "address", null: false
     t.string "building"
-    t.string "phone_number"
+    t.string "phone_number", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["purchase_id"], name: "index_shipping_addresses_on_purchase_id"

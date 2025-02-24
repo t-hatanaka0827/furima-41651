@@ -1,6 +1,7 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item
+  before_action :redirect_if_invalid
 
   def index
     @order_address = OrderAddress.new
@@ -8,7 +9,8 @@ class PurchasesController < ApplicationController
 
   def create
     @order_address = OrderAddress.new(order_params)
-    if @order_address.save
+    if @order_address.valid?
+       @order_address.save
       redirect_to root_path
     else
       render :index, status: :unprocessable_entity
@@ -24,6 +26,12 @@ class PurchasesController < ApplicationController
 
   def set_item
     @item = Item.find(params[:item_id])
+  end
+
+  def redirect_if_invalid
+    if @item.user == current_user || @item.purchase.present?
+      redirect_to root_path
+    end
   end
 
 end
