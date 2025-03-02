@@ -14,8 +14,8 @@ FactoryBot.define do
 
 
     after(:build) do |item|
-      image_url = Faker::LoremFlickr.image(size: "50x50") # ダミー画像URLを取得
-      downloaded_image = URI.open(image_url) # 画像を取得
+      image_url = Faker::LoremFlickr.image(size: "50x50")
+      downloaded_image = URI.open(image_url)
 
       item.image.attach(
         io: downloaded_image,
