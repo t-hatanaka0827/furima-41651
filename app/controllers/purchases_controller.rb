@@ -15,6 +15,7 @@ class PurchasesController < ApplicationController
        @order_address.save
       redirect_to root_path
     else
+      gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
       render :index, status: :unprocessable_entity
     end
   end
@@ -39,7 +40,7 @@ class PurchasesController < ApplicationController
   def pay_item
    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
    Payjp::Charge.create(
-    amount: order_params[:price],
+    amount: @item.price,
     card: order_params[:token],
     currency: 'jpy'
   )

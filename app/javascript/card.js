@@ -28,4 +28,4 @@ const pay = () => {
   });
 };
 
-window.addEventListener("turbo:load", pay);
+document.addEventListener("DOMContentLoaded", pay);
