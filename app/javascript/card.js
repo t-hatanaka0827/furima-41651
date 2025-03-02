@@ -29,3 +29,5 @@ const pay = () => {
 };
 
 document.addEventListener("DOMContentLoaded", pay);
+document.addEventListener("turbo:load", pay);
+document.addEventListener("turbo:render", pay);
